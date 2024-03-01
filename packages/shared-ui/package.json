@@ -1,0 +1,19 @@
+{
+  "name": "@repo/shared-ui",
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.2.2"
+  },
+  "peerDependencies": {
+    "@tanstack/vue-query": "^5.17.0",
+    "vue": "^3.4.3"
+  },
+  "exports": {
+    ".": {
+      "import": "./src/index.ts",
+      "require": "./src/index.js"
+    }
+  }
+}

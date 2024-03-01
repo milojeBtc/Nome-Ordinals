@@ -1,0 +1,53 @@
+// Prisma client generator configuration.
+generator client {
+  provider = "prisma-client-js" // The provider for the client generation.
+}
+
+// Database connection configuration.
+datasource db {
+  provider = "mysql" // The database provider.
+  url      = env("DATABASE_URL") // The URL of the database to connect to.
+}
+
+// Enum representing different statuses a claim can have.
+enum OrderStatus {
+  UNPAID // The claim has not been paid yet.
+  EXPIRED // The claim has expired.
+  COMPLETE // The claim has been completed.
+}
+
+// claim type 
+// WL: 20% discount
+// claim type 
+// WL: 20% discount ⬇️
+//  giveaway winners: 2000 free,
+//  holder WL: 1000 free,
+//  non-holder WL: 0 free,
+// public: full price
+// public holder: 1000 free and after full price
+
+model Order {
+  id             Int         @id @default(autoincrement())
+  status         OrderStatus @default(UNPAID)
+  receiveAddress String // The address associated with the claim.
+  // The claim associated with the order, if whitelist.
+  claimId        Int?
+  claim          Claim?      @relation(fields: [claimId], references: [id])
+  amount         Int
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
+  paymentTxId    String?
+  transferTxId   String?
+  feeRate        Int         @default(0)
+  expiresAt      DateTime
+}
+
+model Claim {
+  id             Int      @id @default(autoincrement())
+  ordinalAddress String
+  freeAmount     Int      @default(0)
+  claimedAmount  Int      @default(0)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  orders         Order[]
+}

@@ -1,0 +1,29 @@
+{
+  "name": "brc-20-frontend",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@repo/shared-ui": "workspace:^",
+    "@tanstack/vue-query": "^5.14.1",
+    "bitcoin-address-validation": "^2.2.3",
+    "oh-vue-icons": "1.0.0-rc3",
+    "sats-connect": "^1.1.2",
+    "vue": "^3.3.11",
+    "vue-router": "^4.2.5"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.5.2",
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.32",
+    "tailwindcss": "^3.3.6",
+    "typescript": "^5.2.2",
+    "vite": "^5.0.8",
+    "vue-tsc": "^1.8.25"
+  }
+}
